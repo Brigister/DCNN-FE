@@ -1,0 +1,49 @@
+<form [formGroup]="messageData" (ngSubmit)="contact()">
+  <mat-form-field class="field">
+    <mat-label>Nome</mat-label>
+    <input matInput formControlName="nome" />
+
+    <mat-error *ngIf="nome.hasError('required')"
+      >Devi inserire il tuo nome</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field class="field">
+    <mat-label>Cognome</mat-label>
+    <input matInput formControlName="cognome" />
+    <mat-error *ngIf="cognome.hasError('required')"
+      >Devi inserire il tuo cognome</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field class="field">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" />
+    <mat-error *ngIf="email.hasError('email')">Controlla l'email</mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="field">
+    <mat-label>Messaggio</mat-label>
+    <textarea
+      matInput
+      #message
+      maxlength="400"
+      cdkTextareaAutosize
+      formControlName="testo"
+    ></textarea>
+    <mat-hint align="end">{{ message.value.length }} / 400</mat-hint>
+    <mat-error *ngIf="testo.hasError('required')"
+      >Devi scriverci qualcosa!!</mat-error
+    >
+  </mat-form-field>
+
+  <div id="button">
+    <button mat-raised-button type="submit">
+      Invia
+    </button>
+  </div>
+</form>
+
+<div style="text-align: center;">
+  <p id="response"></p>
+</div>

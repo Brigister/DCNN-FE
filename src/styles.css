@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: FlowerKingdom;
+  src: url("/assets/fonts/Flowers Kingdom.ttf") format("opentype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+}
+body {
+  background-color: #18121e;
+  color: white;
+  font-size: 20px;
+}
+h1,
+h2,
+h3,
+mat-card-title {
+  font-family: "Bangers", cursive;
+}
+p {
+  font-family: "Inconsolata", monospace;
+}
+.outer {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+input.mat-input-element,
+textarea.mat-input-element {
+  margin-top: -1.5% !important;
+  margin-left: -1.5% !important;
+}

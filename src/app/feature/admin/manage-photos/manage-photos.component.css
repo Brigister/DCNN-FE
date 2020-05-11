@@ -1,0 +1,58 @@
+.form {
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+}
+
+form {
+  margin-top: 30px;
+  color: yellow !important;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+input,
+textarea {
+  border-radius: 5px;
+}
+
+.mat-input-element {
+  background: white;
+  color: black;
+  /* padding: 8px; */
+}
+
+.mat-hint {
+  color: yellow;
+}
+
+.field {
+  width: 100%;
+}
+
+mat-grid-tile {
+  height: 20px;
+}
+
+.form button {
+  margin-top: 10px;
+}
+
+.outer button {
+  margin-left: 10px;
+}
+
+table {
+  margin-top: 2%;
+  width: 100%;
+}
+
+th.mat-header-cell {
+  text-align: center;
+  font-size: 20px;
+}
+
+td.mat-cell {
+  text-align: center;
+}

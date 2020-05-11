@@ -1,0 +1,54 @@
+/****************
+ ******FORM****** 
+ ****************/
+
+.form {
+  display: flex;
+  justify-content: center;
+}
+.input {
+  width: 100%;
+}
+form {
+  margin-top: 30px;
+  min-width: 300px;
+  max-width: 500px;
+  width: 100%;
+}
+
+input {
+  border-radius: 5px;
+}
+.mat-input-element {
+  background: white;
+  color: black;
+  padding: 8px;
+}
+form button {
+  margin-bottom: 5%;
+}
+.centro {
+  text-align: center;
+}
+
+/****************
+ *****TABLE****** 
+ ****************/
+
+table {
+  margin-top: 2%;
+  width: 100%;
+}
+
+th.mat-header-cell {
+  text-align: center;
+  font-size: 20px;
+}
+
+td.mat-cell {
+  text-align: center;
+}
+
+table button {
+  margin-left: 10px;
+}

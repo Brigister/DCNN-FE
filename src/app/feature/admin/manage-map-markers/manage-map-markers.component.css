@@ -1,0 +1,64 @@
+/****************
+ ******FORM****** 
+ ****************/
+
+.marker {
+  width: 100%;
+}
+.form {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  margin-top: 30px;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+input {
+  border-radius: 5px;
+}
+.mat-input-element {
+  background: white;
+  color: black;
+  padding: 8px;
+}
+form button {
+  margin-bottom: 5%;
+}
+/****************
+ *****TABLE****** 
+ ****************/
+
+.filtro {
+  margin-top: 2%;
+  margin-left: 1%;
+  width: 20%;
+}
+
+.outer {
+  margin-top: 2%;
+}
+
+.centro {
+  text-align: center;
+}
+
+table {
+  width: 100%;
+}
+
+th.mat-header-cell {
+  text-align: center;
+  font-size: 20px;
+}
+
+td.mat-cell {
+  text-align: center;
+}
+
+td.mat-cell button {
+  margin-right: 1%;
+}

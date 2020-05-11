@@ -1,0 +1,11 @@
+.intromargin {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+#intro {
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  margin: 2% 5% 0 5%;
+}

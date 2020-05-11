@@ -1,0 +1,38 @@
+<div class="outer" id="kikko">
+  <div class="amore">
+    <mat-accordion class="header-align">
+      <mat-expansion-panel *ngFor="let event of obs | async; let i = index">
+        <mat-expansion-panel-header class="centro">
+          <mat-panel-title>
+            <h2 class="psx">{{ event.Nome }}</h2>
+          </mat-panel-title>
+          <mat-panel-description>
+            {{ event.Formatted }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <ng-template matExpansionPanelContent>
+          <div id="panelImg">
+            <img src="{{ event.UrlFoto }}" />
+          </div>
+          <div class="panelContent">
+            <p>{{ event.Descrizione }}</p>
+          </div>
+          <div class="panelContent">
+            <p>{{ event.Formatted }}, {{ event.Luogo }}</p>
+          </div>
+
+          <div class="buttons">
+            <button mat-raised-button (click)="openDialog(i)">Mappa</button>
+            <button mat-raised-button>
+              <a href="https://www.facebook.com/events/{{ event.idEventi }}"
+                >Maggiori Info</a
+              >
+            </button>
+          </div>
+        </ng-template>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-paginator [pageSizeOptions]="[5]"></mat-paginator>
+  </div>
+</div>

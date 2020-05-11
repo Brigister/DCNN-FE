@@ -1,0 +1,36 @@
+<!-- example-app.html 
+(mapRightclick)="removeLastMarker()"
+ (mapClick)="addMarker($event)"-->
+<google-map
+  height="400px"
+  width="750px"
+  [center]="center"
+  [zoom]="zoom"
+  (mapMousemove)="move($event)"
+>
+  <map-marker
+    #marker
+    *ngFor="let markerPosition of markerPositions"
+    [position]="markerPosition"
+    [options]="markerOptions"
+    (mapClick)="openInfoWindow(marker)"
+  ></map-marker>
+  <map-info-window>
+    <div id="title">
+      <h3>{{ data.event.Nome }}</h3>
+      <mat-divider></mat-divider>
+    </div>
+    <div class="info">Presso: {{ data.event.Luogo }}</div>
+    <div class="info">Data: {{ data.event.Formatted }}</div>
+
+    <div class="info">
+      <a
+        target="_blank"
+        href="https://www.google.com/maps?ll={{ data.event.Latitudine }},{{
+          data.event.Longitudine
+        }}"
+        >Visualizza su Google Maps</a
+      >
+    </div>
+  </map-info-window>
+</google-map>

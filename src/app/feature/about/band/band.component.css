@@ -1,0 +1,98 @@
+h3 {
+  font-family: FlowerKingdom;
+  font-size: 30px;
+}
+
+p {
+  font-size: 25px;
+  font-family: "Inconsolata", monospace;
+}
+
+h3,
+p {
+  padding-top: 20px;
+  text-align: center;
+}
+
+mat-card {
+  margin-top: 2%;
+}
+
+.bio {
+  display: flex;
+}
+
+.image {
+  flex-basis: 30%;
+}
+
+.text-sx {
+  flex-basis: 70%;
+  order: -1;
+}
+
+.text {
+  flex-basis: 70%;
+}
+
+/* MEDIA QUERY */
+
+@media (max-width: 1700px) {
+  .text-sx,
+  .text {
+    flex-basis: 60%;
+  }
+  .image {
+    flex-basis: 40%;
+  }
+}
+
+@media (max-width: 1500px) {
+  p {
+    font-size: 20px;
+  }
+}
+@media (max-width: 1250px) {
+  p {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .bio {
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row-reverse;
+  }
+
+  .text-sx,
+  .text {
+    flex-basis: 100%;
+    order: -1;
+    padding-bottom: 1%;
+  }
+
+  .image {
+    flex-basis: 70%;
+  }
+
+  .title-sx {
+    order: -1 !important;
+  }
+  .image-sx {
+    order: 0 !important;
+  }
+  .p-sx {
+    order: 1 !important;
+  }
+
+  .title {
+    order: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .image {
+    flex-basis: 100%;
+  }
+}

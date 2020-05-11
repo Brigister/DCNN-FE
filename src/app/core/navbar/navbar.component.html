@@ -1,0 +1,149 @@
+<mat-toolbar class="myNavbar">
+  <div class="titolo">
+    <button mat-flat-button routerLink="" routerLinkActive="active">
+      #DCNN
+    </button>
+  </div>
+
+  <div class="routing">
+    <button
+      mat-flat-button
+      *ngIf="!isEventiRoute()"
+      routerLink="/eventi"
+      routerLinkActive="active"
+    >
+      Eventi
+    </button>
+    <button
+      mat-flat-button
+      *ngIf="isEventiRoute()"
+      routerLink="/eventi/history"
+      routerLinkActive="active"
+    >
+      Eventi Passati
+    </button>
+    <button mat-flat-button routerLink="/mappa" routerLinkActive="active">
+      Mappa
+    </button>
+    <button mat-flat-button routerLink="/videoclip" routerLinkActive="active">
+      Video Clip
+    </button>
+    <button
+      *ngIf="!isBioRoute()"
+      mat-flat-button
+      routerLink="/bio"
+      routerLinkActive="active"
+    >
+      Bio
+    </button>
+    <button
+      *ngIf="isBioRoute()"
+      mat-flat-button
+      routerLink="/bio/band"
+      routerLinkActive="active"
+    >
+      Band
+    </button>
+    <button mat-flat-button routerLink="/contattaci" routerLinkActive="active">
+      Contattaci
+    </button>
+  </div>
+
+  <div class="social">
+    <a
+      href="www.facebook.com/Diplomaticoeilcollettivonn/"
+      class="fa fa-facebook"
+    ></a>
+    <a
+      href="/www.youtube.com/channel/UClSgAqZK9wJIT_RDhdqVObg"
+      class="fa fa-youtube"
+    ></a>
+    <a
+      href="www.instagram.com/diplomaticoeilcollettivonn/"
+      class="fa fa-instagram"
+    ></a>
+    <a
+      href="open.spotify.com/artist/64GVceW437xz6YCREtCeCv"
+      class="fa fa-spotify"
+    ></a>
+  </div>
+
+  <div class="mobile">
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <div style="display: flex; flex-direction: column;">
+        <button
+          mat-flat-button
+          *ngIf="!isEventiRoute()"
+          routerLink="/eventi"
+          routerLinkActive="active"
+        >
+          Eventi
+        </button>
+        <button
+          mat-flat-button
+          *ngIf="isEventiRoute()"
+          routerLink="/eventi/history"
+          routerLinkActive="active"
+        >
+          Eventi Passati
+        </button>
+        <button mat-flat-button routerLink="/mappa" routerLinkActive="active">
+          Mappa
+        </button>
+        <button
+          mat-flat-button
+          routerLink="/videoclip"
+          routerLinkActive="active"
+        >
+          Video Clip
+        </button>
+        <button
+          *ngIf="!isBioRoute()"
+          mat-flat-button
+          routerLink="/bio"
+          routerLinkActive="active"
+        >
+          Bio
+        </button>
+        <button
+          *ngIf="isBioRoute()"
+          mat-flat-button
+          routerLink="/bio/band"
+          routerLinkActive="active"
+        >
+          Band
+        </button>
+        <button
+          mat-flat-button
+          routerLink="/contattaci"
+          routerLinkActive="active"
+        >
+          Contattaci
+        </button>
+      </div>
+
+      <div class="social">
+        <a
+          href="www.facebook.com/Diplomaticoeilcollettivonn/"
+          class="fa fa-facebook"
+        ></a>
+        <a
+          href="/www.youtube.com/channel/UClSgAqZK9wJIT_RDhdqVObg"
+          class="fa fa-youtube"
+        ></a>
+        <a
+          href="www.instagram.com/diplomaticoeilcollettivonn/"
+          class="fa fa-instagram"
+        ></a>
+        <a
+          href="open.spotify.com/artist/64GVceW437xz6YCREtCeCv"
+          class="fa fa-spotify"
+        ></a>
+      </div>
+    </mat-menu>
+  </div>
+</mat-toolbar>

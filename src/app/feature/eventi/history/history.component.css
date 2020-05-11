@@ -1,0 +1,113 @@
+.outer {
+  background-image: url("../../../../assets/torre2.webp");
+  background-repeat: no-repeat;
+}
+
+button {
+  margin-left: 10px;
+  background-color: #e6b800;
+}
+
+a {
+  all: unset;
+}
+
+#kikko {
+  padding-top: 29%;
+}
+
+.eventImg {
+  max-width: 40%;
+}
+
+#titolo {
+  /* text-align: center; */
+  margin-bottom: 1%;
+  font-family: "Bangers", cursive;
+  font-size: 39px;
+  max-width: 40%;
+}
+
+.content {
+  font-family: "Inconsolata", monospace;
+  font-size: 20px;
+}
+
+.text {
+  margin-top: 1%;
+  max-width: 40%;
+}
+.buttons {
+  margin-top: 2%;
+  /* text-align: center; */
+}
+
+.mat-expansion-panel,
+.mat-paginator {
+  /* margin-left: 10%; */
+  max-width: 60%;
+}
+.mat-expansion-panel-header,
+.mat-paginator {
+  background-color: #e6b800;
+}
+
+/* .mat-expansion-panel-header :hover {
+  /* disabilitare hover 
+} */
+.header-align .mat-expansion-panel-header-title,
+.header-align .mat-expansion-panel-header-description {
+  font-family: "Bangers", cursive;
+  flex-basis: 2;
+  font-size: 20px;
+}
+
+.header-align .mat-expansion-panel-header-description {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#panelImg {
+  margin: auto;
+  width: 80%;
+  margin-bottom: 2%;
+}
+
+.panelContent {
+  font-family: "Inconsolata", monospace;
+  font-size: 20px;
+  margin-bottom: 4%;
+}
+
+/* MEDIA QUERIES*/
+
+@media (max-width: 1500px) {
+  .mat-expansion-panel,
+  .mat-paginator {
+    max-width: 80%;
+  }
+
+  #panelImg {
+    margin: auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .mat-expansion-panel-header-description {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .mat-expansion-panel,
+  .mat-paginator {
+    max-width: 100%;
+  }
+  .header-align .mat-expansion-panel-header-title {
+    font-size: 15px;
+  }
+  .panelContent {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,12 @@
+h3 {
+  text-align: center;
+}
+
+.field {
+  width: 100%;
+}
+
+.mat-divider {
+  margin-top: 20px;
+  padding-bottom: 20px;
+}

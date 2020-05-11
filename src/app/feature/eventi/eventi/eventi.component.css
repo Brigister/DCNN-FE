@@ -1,0 +1,113 @@
+button {
+  margin-left: 10px;
+  background-color: #e6b800;
+}
+
+a {
+  all: unset;
+}
+
+.eventImg {
+  max-width: 40%;
+}
+
+img {
+  width: 100%;
+  margin-right: 1%;
+}
+.main {
+  padding-top: 2%;
+  margin-bottom: 10%;
+  /* padding-bottom: 10%; */
+  background-image: url("../../../../assets/gorilla.webp");
+  background-repeat: no-repeat;
+}
+
+#titolo {
+  color: white;
+  margin-bottom: 1%;
+  font-family: "Bangers", cursive;
+  font-size: 39px;
+  max-width: 40%;
+}
+
+.content {
+  font-family: "Inconsolata", monospace;
+  font-size: 20px;
+}
+
+.text {
+  color: white;
+  margin-top: 1%;
+  max-width: 40%;
+}
+.buttons {
+  margin-top: 2%;
+  /* text-align: center; */
+}
+
+.mat-expansion-panel {
+  margin: auto;
+  max-width: 60%;
+}
+.mat-expansion-panel-header {
+  background-color: #e6b800;
+  font-family: "Bangers", cursive;
+}
+
+/* .mat-expansion-panel-header :hover {
+  /* disabilitare hover 
+} */
+.header-align .mat-expansion-panel-header-title,
+.header-align .mat-expansion-panel-header-description {
+  flex-basis: 2;
+  font-size: 20px;
+}
+
+.header-align .mat-expansion-panel-header-description {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#panelImg {
+  margin: auto;
+  width: 80%;
+  margin-bottom: 2%;
+}
+
+.panelContent {
+  font-family: "Inconsolata", monospace;
+  font-size: 20px;
+  margin-bottom: 4%;
+}
+
+/* MEDIA QUERIES*/
+
+@media (max-width: 1500px) {
+  .mat-expansion-panel {
+    max-width: 80%;
+  }
+
+  #panelImg {
+    margin: auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1100px) {
+  .mat-expansion-panel-header-description {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .mat-expansion-panel {
+    max-width: 90%;
+  }
+  .header-align .mat-expansion-panel-header-title {
+    font-size: 15px;
+  }
+  .panelContent {
+    font-size: 12px;
+  }
+}

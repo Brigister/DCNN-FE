@@ -1,0 +1,17 @@
+button {
+  width: 200px;
+  margin-left: 5px;
+}
+.navbar {
+  text-align: center;
+  margin: 1%;
+}
+
+#titolo {
+  text-align: center;
+  margin-bottom: 1%;
+}
+
+hr {
+  margin-bottom: 1%;
+}

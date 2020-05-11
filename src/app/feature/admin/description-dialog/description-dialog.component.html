@@ -1,0 +1,56 @@
+<div *ngIf="data.photo">
+  <h3 mat-dialog-title>Cambia ordine</h3>
+  <div mat-dialog-content>
+    <p>{{ data.photo.ordine }}</p>
+  </div>
+  <mat-divider></mat-divider>
+  <div mat-dialog-content>
+    <form>
+      <mat-form-field>
+        <mat-label>Nuovo ordine</mat-label>
+        <input matInput [(ngModel)]="imageData.ordine" name="ordine" />
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button (click)="updateImageOrder()">Cambia</button>
+  </div>
+</div>
+
+<div *ngIf="data.video">
+  <h3 mat-dialog-title>Cambia ordine</h3>
+  <div mat-dialog-content>
+    <p>{{ data.video.ordine }}</p>
+  </div>
+  <mat-divider></mat-divider>
+  <div mat-dialog-content>
+    <form>
+      <mat-form-field>
+        <mat-label>Nuovo ordine</mat-label>
+        <input matInput [(ngModel)]="videoData.ordine" name="ordine" />
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button (click)="updateVideoOrder()">Cambia</button>
+  </div>
+</div>
+
+<div *ngIf="data.marker">
+  <h3 mat-dialog-title>Cambia Regione</h3>
+  <div mat-dialog-content>
+    <p>{{ data.marker.regione }}</p>
+  </div>
+  <mat-divider></mat-divider>
+  <div mat-dialog-content>
+    <form>
+      <mat-form-field>
+        <mat-label>Nuova regione</mat-label>
+        <input matInput [(ngModel)]="markerData.regione" name="regione" />
+      </mat-form-field>
+    </form>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-raised-button (click)="updateRegion()">Cambia</button>
+  </div>
+</div>

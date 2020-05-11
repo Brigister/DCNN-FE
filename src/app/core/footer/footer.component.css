@@ -1,0 +1,23 @@
+footer {
+  /* background-color: gainsboro; */
+  /* color: black; */
+  margin-top: 200px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 50px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.fa-facebook,
+.fa-youtube,
+.fa-instagram,
+.fa-spotify {
+  background: transparent;
+  color: #a8a8a8;
+}

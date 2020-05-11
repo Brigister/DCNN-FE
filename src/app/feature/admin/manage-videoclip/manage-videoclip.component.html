@@ -1,0 +1,77 @@
+<div class="centro">
+  <p id="response"></p>
+</div>
+<div class="form">
+  <form>
+    <mat-form-field class="input">
+      <mat-label>Video Url</mat-label>
+      <input matInput [(ngModel)]="videoData.idVideoclip" name="idVideoclip" />
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Titolo</mat-label>
+      <input matInput [(ngModel)]="videoData.nome" name="nome" />
+    </mat-form-field>
+
+    <mat-form-field class="input">
+      <mat-label>Prodotto da</mat-label>
+      <input matInput [(ngModel)]="videoData.prodotto" name="prodotto" />
+    </mat-form-field>
+
+    <div class="centro">
+      <button mat-raised-button (click)="addVideo()">Aggiungi</button>
+    </div>
+  </form>
+</div>
+<hr />
+
+<div class="outer">
+  <table mat-table [dataSource]="videos">
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef>Titolo</th>
+      <td mat-cell *matCellDef="let video">{{ video.nome }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="prodotto">
+      <th mat-header-cell *matHeaderCellDef>Prodotto</th>
+      <td mat-cell *matCellDef="let video">
+        {{ video.prodotto }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="videourl">
+      <th mat-header-cell *matHeaderCellDef>Video Url</th>
+      <td mat-cell *matCellDef="let video">{{ video.idVideoclip }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ordine">
+      <th mat-header-cell *matHeaderCellDef>Ordine</th>
+      <td mat-cell *matCellDef="let video">
+        {{ video.ordine }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="azioni">
+      <th mat-header-cell *matHeaderCellDef>Azioni</th>
+      <td mat-cell *matCellDef="let video; let i = index">
+        <mat-slide-toggle
+          [checked]="video.isVisible == 1 ? true : false"
+          (change)="changeVisibility(video.idVideoclip, $event)"
+        >
+        </mat-slide-toggle>
+        <button mat-raised-button (click)="openDialog(i)">Ordine</button>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="delete(video.idVideoclip)"
+        >
+          Elimina
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"> </mat-paginator>
+</div>

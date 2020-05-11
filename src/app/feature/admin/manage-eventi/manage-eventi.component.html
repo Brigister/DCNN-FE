@@ -1,0 +1,45 @@
+<button mat-raised-button (click)="refreshEventi()">Aggiorna eventi</button>
+<button mat-raised-button (click)="refreshCover()">Aggiorna foto eventi</button>
+<p id="response"></p>
+
+<hr />
+
+<div class="outer">
+  <mat-form-field class="filtro">
+    <mat-label>Filtro</mat-label>
+    <input matInput (keyup)="applyFilter($event)" />
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="data">
+      <th mat-header-cell *matHeaderCellDef>Data</th>
+      <td mat-cell *matCellDef="let event">{{ event.Formatted }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef>Nome</th>
+      <td mat-cell *matCellDef="let event">{{ event.Nome }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="luogo">
+      <th mat-header-cell *matHeaderCellDef>Luogo</th>
+      <td mat-cell *matCellDef="let event">{{ event.Luogo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="azioni">
+      <th mat-header-cell *matHeaderCellDef>Azioni</th>
+      <td mat-cell *matCellDef="let event; let i = index">
+        <button mat-raised-button (click)="openDialog(i)">
+          Descrizione
+        </button>
+        <button mat-raised-button color="warn" (click)="delete(event.idEventi)">
+          Elimina
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"> </mat-paginator>
+</div>

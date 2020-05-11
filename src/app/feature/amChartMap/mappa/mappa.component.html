@@ -1,0 +1,19 @@
+<div class="outer">
+  <div class="inline" id="chartdiv"></div>
+
+  <div class="inline" id="legenda">
+    <mat-grid-list cols="2" rowHeight="30px">
+      <mat-grid-tile>Regione</mat-grid-tile>
+      <mat-grid-tile>Numero</mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list
+      cols="2"
+      rowHeight="30px"
+      *ngFor="let regionCount of regionCounts"
+    >
+      <mat-grid-tile>{{ regionCount.regione }}</mat-grid-tile>
+      <mat-grid-tile>{{ regionCount.quantita }}</mat-grid-tile>
+      <hr />
+    </mat-grid-list>
+  </div>
+</div>

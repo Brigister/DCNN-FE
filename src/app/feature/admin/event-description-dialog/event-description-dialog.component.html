@@ -1,0 +1,23 @@
+<h3 mat-dialog-title>Cambia descrizione</h3>
+
+<div mat-dialog-content>
+  <mat-form-field class="field">
+    <mat-label>Modifica descrizione</mat-label>
+    <textarea
+      matInput
+      #message
+      value="{{ data.event.Descrizione }}"
+      maxlength="1000"
+      cdkTextareaAutosize
+      cdkAutosizeMinRows="1"
+      cdkAutosizeMaxRows="6"
+      [(ngModel)]="eventData.descrizione"
+      name="descrizione"
+    ></textarea>
+    <mat-hint align="end">{{ message.value.length }} / 1000</mat-hint>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="updateDescription()">Cambia</button>
+</div>
+<p></p>

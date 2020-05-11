@@ -1,0 +1,64 @@
+<div class="outer">
+  <div *ngIf="actives == null">
+    <p>Non ci sono Eventi in programma</p>
+  </div>
+
+  <div class="outer">
+    <div class="main" *ngFor="let active of actives | slice: 0:1">
+      <h2 id="titolo">{{ active.Nome }}</h2>
+      <div class="content">
+        <div class="eventImg">
+          <img src="{{ active.UrlFoto }}" />
+        </div>
+        <div>
+          <p class="text">{{ active.Descrizione }}</p>
+          <p class="text">{{ active.Formatted }}, {{ active.Luogo }}</p>
+          <div class="buttons">
+            <button mat-raised-button (click)="openDialog(0)">Mappa</button>
+            <button mat-raised-button>
+              <a href="https://www.facebook.com/events/{{ active.idEventi }}"
+                >Maggiori Info</a
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <mat-accordion class="header-align">
+      <mat-expansion-panel
+        *ngFor="let active of actives | slice: 1; let i = index"
+      >
+        <mat-expansion-panel-header class="centro">
+          <mat-panel-title>
+            <h2>{{ active.Nome }}</h2>
+          </mat-panel-title>
+          <mat-panel-description>
+            {{ active.Formatted }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <ng-template matExpansionPanelContent>
+          <div id="panelImg">
+            <img src="{{ active.UrlFoto }}" />
+          </div>
+          <div class="panelContent">
+            <p>{{ active.Descrizione }}</p>
+          </div>
+          <div class="panelContent">
+            <p>{{ active.Formatted }}, {{ active.Luogo }}</p>
+          </div>
+
+          <div class="buttons">
+            <button mat-raised-button (click)="openDialog(0)">Mappa</button>
+            <button mat-raised-button>
+              <a href="https://www.facebook.com/events/{{ active.idEventi }}"
+                >Maggiori Info</a
+              >
+            </button>
+          </div>
+        </ng-template>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

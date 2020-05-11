@@ -1,0 +1,78 @@
+<div class="form">
+  <form>
+    <mat-label class="centro"><h2>Aggiungi un marker alla Mappa</h2></mat-label>
+    <mat-form-field class="marker">
+      <mat-label>Latitudine</mat-label>
+      <input matInput [(ngModel)]="markerData.lat" name="lat" />
+    </mat-form-field>
+
+    <mat-form-field class="marker">
+      <mat-label>Longitudine</mat-label>
+      <input matInput [(ngModel)]="markerData.lng" name="lng" />
+    </mat-form-field>
+
+    <mat-form-field class="marker">
+      <mat-label>Luogo</mat-label>
+      <input matInput [(ngModel)]="markerData.luogo" name="luogo" />
+    </mat-form-field>
+
+    <mat-form-field class="marker">
+      <mat-label>Regione</mat-label>
+      <input matInput [(ngModel)]="markerData.regione" name="regione" />
+    </mat-form-field>
+
+    <div class="centro">
+      <button mat-raised-button (click)="uploadMarker()">
+        Aggiungi
+      </button>
+
+      <p id="response"></p>
+    </div>
+  </form>
+</div>
+<hr />
+<div class="outer">
+  <h3 class="centro">Lista dei Marker</h3>
+
+  <mat-form-field class="filtro">
+    <mat-label>Filtro</mat-label>
+    <input matInput (keyup)="applyFilter($event)" />
+  </mat-form-field>
+
+  <table mat-table [dataSource]="mapMarkers">
+    <ng-container matColumnDef="luogo">
+      <th mat-header-cell *matHeaderCellDef>Luogo</th>
+      <td mat-cell *matCellDef="let mapMarker">{{ mapMarker.luogo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="regione">
+      <th mat-header-cell *matHeaderCellDef>Regione</th>
+      <td mat-cell *matCellDef="let mapMarker">{{ mapMarker.regione }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="formatted">
+      <th mat-header-cell *matHeaderCellDef>Data</th>
+      <td mat-cell *matCellDef="let mapMarker">{{ mapMarker.Formatted }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="azioni">
+      <th mat-header-cell *matHeaderCellDef>Azioni</th>
+      <td mat-cell *matCellDef="let mapMarker; let i = index">
+        <button mat-raised-button color="primary" (click)="openDialog(i)">
+          Regione
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="deleteMarker(mapMarker.id)"
+        >
+          Elimina
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"> </mat-paginator>
+</div>
