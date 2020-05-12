@@ -5,8 +5,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
   providedIn: "root",
 })
 export class EventService {
-  private _fbapiUrl = "http://localhost:3000/fbapi/";
-  private _eventUrl = "http://localhost:3000/event/";
+  private _fbapiUrl = "https://dcnn.herokuapp.com/fbapi/";
+  private _eventUrl = "https://dcnn.herokuapp.com/event/";
 
   httpOptions = {
     headers: new HttpHeaders({

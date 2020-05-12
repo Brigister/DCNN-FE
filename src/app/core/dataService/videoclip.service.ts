@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root",
 })
 export class VideoclipService {
-  private _videoclipUrl = "http://localhost:3000/videoclip/";
+  private _videoclipUrl = "https://dcnn.herokuapp.com/videoclip/";
 
   constructor(public http: HttpClient) {}
 

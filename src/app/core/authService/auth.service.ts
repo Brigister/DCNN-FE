@@ -6,7 +6,7 @@ import * as JWT from "jwt-decode";
   providedIn: "root",
 })
 export class AuthService {
-  private _userUrl = "http://localhost:3000/user/";
+  private _userUrl = "https://dcnn.herokuapp.com/user/";
 
   constructor(private http: HttpClient) {}
 

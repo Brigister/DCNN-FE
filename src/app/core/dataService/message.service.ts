@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root",
 })
 export class MessageService {
-  private _contactUrl = "http://localhost:3000/contact/";
+  private _contactUrl = "https://dcnn.herokuapp.com/contact/";
 
   constructor(public http: HttpClient) {}
 

@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root",
 })
 export class PhotoService {
-  private _albumUrl = "http://localhost:3000/album/";
+  private _albumUrl = "https://dcnn.herokuapp.com/album/";
 
   constructor(public http: HttpClient) {}
 

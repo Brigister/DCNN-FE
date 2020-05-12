@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
   providedIn: "root",
 })
 export class MapmarkerService {
-  private _mapmarkersUrl = "http://localhost:3000/mapmarkers/";
+  private _mapmarkersUrl = "https://dcnn.herokuapp.com/mapmarkers/";
 
   constructor(public http: HttpClient) {}
 
