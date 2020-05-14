@@ -79,69 +79,67 @@
   </div>
 
   <div *ngIf="!events">
-    <mat-card class="videoIntro">
+    <mat-card>
       <mat-card-title>
         Diplomatico e il Collettivo Ninco Nanco
       </mat-card-title>
-      <mat-card-content
-        ><youtube-player
-          videoId="YqEPhynPF3Q"
-          style="width: 200%; height: 200%;"
-        >
-        </youtube-player>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          consectetur aliquam leo ac condimentum. Nullam fringilla quis purus
-          sed finibus. Pellentesque at consequat odio. Aliquam erat volutpat.
-          Nulla velit est, convallis eget mattis vel, maximus eu justo. Fusce
-          vehicula fringilla velit eget ullamcorper. Interdum et malesuada fames
-          ac ante ipsum primis in faucibus. Sed tincidunt arcu eget lectus
-          dapibus, vel molestie sem maximus. Interdum et malesuada fames ac ante
-          ipsum primis in faucibus.
-        </p></mat-card-content
-      >
+      <mat-card-content class="max-container">
+        <div class="maxfoto">
+          <youtube-player videoId="YqEPhynPF3Q"> </youtube-player>
+        </div>
+        <div class="maxtext">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+            consectetur aliquam leo ac condimentum. Nullam fringilla quis purus
+            sed finibus. Pellentesque at consequat odio. Aliquam erat volutpat.
+            Nulla velit est, convallis eget mattis vel, maximus eu justo. Fusce
+            vehicula fringilla velit eget ullamcorper. Interdum et malesuada
+            fames ac ante ipsum primis in faucibus. Sed tincidunt arcu eget
+            lectus dapibus, vel molestie sem maximus. Interdum et malesuada
+            fames ac ante ipsum primis in faucibus.
+          </p>
+        </div>
+      </mat-card-content>
     </mat-card>
 
-    <mat-card class="min">
-      <mat-card-title>
-        Tabacco
-      </mat-card-title>
-      <mat-card-content
-        ><youtube-player
-          videoId="YqEPhynPF3Q"
-          style="width: 200%; height: 200%;"
+    <div class="min-container">
+      <mat-card class="min-events">
+        <mat-card-title>
+          Tabacco
+        </mat-card-title>
+        <mat-card-content
+          ><youtube-player videoId="U0QjO3zCnvM"> </youtube-player>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+            consectetur aliquam leo ac condimentum. Nullam fringilla quis purus
+            sed finibus. Pellentesque at consequat odio. Aliquam erat volutpat.
+            Nulla velit est, convallis eget mattis vel, maximus eu justo. Fusce
+            vehicula fringilla velit eget ullamcorper. Interdum et malesuada
+            fames ac ante ipsum primis in faucibus. Sed tincidunt arcu eget
+            lectus dapibus, vel molestie sem maximus. Interdum et malesuada
+            fames ac ante ipsum primis in faucibus.
+          </p></mat-card-content
         >
-        </youtube-player>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          consectetur aliquam leo ac condimentum. Nullam fringilla quis purus
-          sed finibus. Pellentesque at consequat odio. Aliquam erat volutpat.
-          Nulla velit est, convallis eget mattis vel, maximus eu justo. Fusce
-          vehicula fringilla velit eget ullamcorper. Interdum et malesuada fames
-          ac ante ipsum primis in faucibus. Sed tincidunt arcu eget lectus
-          dapibus, vel molestie sem maximus. Interdum et malesuada fames ac ante
-          ipsum primis in faucibus.
-        </p></mat-card-content
-      >
-    </mat-card>
+      </mat-card>
 
-    <mat-card class="min">
-      <mat-card-title>
-        Puntini
-      </mat-card-title>
-      <mat-card-content
-        ><youtube-player videoId="YqEPhynPF3Q"> </youtube-player>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-          consectetur aliquam leo ac condimentum. Nullam fringilla quis purus
-          sed finibus. Pellentesque at consequat odio. Aliquam erat volutpat.
-          Nulla velit est, convallis eget mattis vel, maximus eu justo. Fusce
-          vehicula fringilla velit eget ullamcorper. Interdum et malesuada fames
-          ac ante ipsum primis in faucibus. Sed tincidunt arcu eget lectus
-          dapibus, vel molestie sem maximus. Interdum et malesuada fames ac ante
-          ipsum primis in faucibus.
-        </p></mat-card-content
-      >
-    </mat-card>
+      <mat-card class="min-events">
+        <mat-card-title>
+          Puntini
+        </mat-card-title>
+        <mat-card-content
+          ><youtube-player videoId="r7STTc1rOYE"> </youtube-player>
+          <p class="data">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
+            consectetur aliquam leo ac condimentum. Nullam fringilla quis purus
+            sed finibus. Pellentesque at consequat odio. Aliquam erat volutpat.
+            Nulla velit est, convallis eget mattis vel, maximus eu justo. Fusce
+            vehicula fringilla velit eget ullamcorper. Interdum et malesuada
+            fames ac ante ipsum primis in faucibus. Sed tincidunt arcu eget
+            lectus dapibus, vel molestie sem maximus. Interdum et malesuada
+            fames ac ante ipsum primis in faucibus.
+          </p></mat-card-content
+        >
+      </mat-card>
+    </div>
   </div>
 </div>

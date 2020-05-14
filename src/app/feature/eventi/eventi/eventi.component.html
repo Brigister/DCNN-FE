@@ -1,6 +1,16 @@
 <div class="outer">
   <div *ngIf="actives == null">
-    <p>Non ci sono Eventi in programma</p>
+    <p>
+      Al momento abbiamo concerti programmati.<br />
+      Dai un'occhiata ai nostri concerti passati!
+    </p>
+    <button
+      mat-raised-button
+      routerLink="/eventi/history"
+      routerLinkActive="active"
+    >
+      Concerti Passati
+    </button>
   </div>
 
   <div class="outer">

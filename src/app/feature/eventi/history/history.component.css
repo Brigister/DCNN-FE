@@ -1,6 +1,7 @@
 .outer {
   background-image: url("../../../../assets/torre2.webp");
   background-repeat: no-repeat;
+  background-size: 100%;
 }
 
 button {
