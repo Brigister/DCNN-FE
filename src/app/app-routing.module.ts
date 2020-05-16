@@ -13,13 +13,6 @@ const routes: Routes = [
     loadChildren: () =>
       import("./feature/eventi/eventi.module").then((m) => m.EventiModule),
   },
-
-  {
-    path: "mappa",
-    loadChildren: () =>
-      import("./feature/amChartMap/mappa.module").then((m) => m.MappaModule),
-    data: { preload: true },
-  },
   {
     path: "videoclip",
     loadChildren: () =>
@@ -32,6 +25,7 @@ const routes: Routes = [
     path: "bio",
     loadChildren: () =>
       import("./feature/about/about.module").then((m) => m.AboutModule),
+    data: { preload: true },
   },
   { path: "login", component: LoginComponent },
   {
@@ -40,7 +34,7 @@ const routes: Routes = [
       import("./feature/admin/admin.module").then((m) => m.AdminModule),
     canActivate: [AdminGuard],
   },
-  /* { path: "**", redirectTo: "", pathMatch: "full" }, */
+  { path: "**", redirectTo: "", pathMatch: "full" },
 ];
 
 @NgModule({
