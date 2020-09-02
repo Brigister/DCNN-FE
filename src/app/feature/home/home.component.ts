@@ -1,9 +1,12 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Type } from "@angular/core";
 
 import { MatDialog } from "@angular/material/dialog";
 import { GmapsDialogComponent } from "../eventi/gmaps-dialog/gmaps-dialog.component";
 import { EventService } from "src/app/core/dataService/event.service";
-import { PhotoService } from "src/app/core/dataService/photo.service";
+import { YoutubeComponent } from './youtube/youtube.component';
+import { Evento } from 'src/app/model/interfaces';
+import { Observable } from 'rxjs/internal/Observable';
+
 
 @Component({
   selector: "app-home",
@@ -11,43 +14,34 @@ import { PhotoService } from "src/app/core/dataService/photo.service";
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-  slides;
-  events;
+  events: Observable<Evento[]>;
+  component: Type<YoutubeComponent>;
 
   constructor(
     private eventData: EventService,
-    private imageData: PhotoService,
     private dialog: MatDialog
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.imageData.getVisibleImages().subscribe((data) => {
-      console.log(data);
-      this.slides = data;
-    });
-    this.eventData.getFirst3Events().subscribe((data) => {
-      console.log(data);
-      this.events = data;
-    });
+    this.events = this.eventData.getFirst3Events()
 
-    const tag = document.createElement("script");
-
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.body.appendChild(tag);
+    if (!this.events) {
+      import("./youtube/youtube.module")
+        .then(m => m.YoutubeModule)
+        .then(lazyModule => {
+          this.component = (lazyModule.components.youtube)
+        })
+    }
   }
 
-  openDialog(id) {
-    console.log(id);
+  openDialog(evento: Evento) {
     let dialogRef = this.dialog.open(GmapsDialogComponent, {
-      backdropClass: "backdrop",
-      panelClass: "panel",
       data: {
-        event: this.events[id],
+        event: evento
       },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-    });
+    dialogRef.afterClosed().subscribe()
+
   }
 }

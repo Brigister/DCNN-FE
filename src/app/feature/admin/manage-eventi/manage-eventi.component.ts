@@ -5,6 +5,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
 import { EventService } from "src/app/core/dataService/event.service";
+import { Evento } from 'src/app/model/interfaces';
 
 @Component({
   selector: "app-manage-eventi",
@@ -13,30 +14,41 @@ import { EventService } from "src/app/core/dataService/event.service";
 })
 export class ManageEventiComponent implements OnInit {
   displayedColumns = ["data", "nome", "luogo", "azioni"];
-  events;
   dataSource;
 
-  constructor(private dialog: MatDialog, private data: EventService) {}
+  refreshed: boolean = undefined;
+  error: boolean = false
+
+  constructor(private dialog: MatDialog, private data: EventService) { }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   ngOnInit(): void {
-    this.data.getAllEvents().subscribe((data: any) => {
-      console.log(data);
-      this.events = data;
+    this.getEventi();
+  }
+
+  getEventi() {
+    this.data.getAllEvents().subscribe((data: Evento[]) => {
+
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });
   }
-
   refreshEventi() {
-    return this.data.refreshEventDB().subscribe((res) => {
-      document.getElementById("response").innerHTML = "Eventi aggiornati";
-    });
+    return this.data.refreshEventDB().subscribe(
+      res => {
+        this.refreshed = true
+        this.getEventi();
+
+      },
+      err => {
+        this.refreshed = false;
+      }
+    );
   }
 
   refreshCover() {
-    return this.data.patchCoverPhoto();
+    return this.data.patchCoverPhoto().subscribe()
   }
 
   applyFilter(event: Event) {
@@ -45,20 +57,29 @@ export class ManageEventiComponent implements OnInit {
   }
 
   delete(id: number) {
-    this.data.deleteEvent(id);
-    location.reload();
+    this.data.deleteEvent(id).subscribe(
+      res => {
+        this.getEventi();
+      },
+      err => {
+        this.error = true;
+      }
+    );
+
   }
 
   openDialog(id): void {
     let dialogRef = this.dialog.open(EventDescriptionDialogComponent, {
-      backdropClass: "backdrop",
       panelClass: "panel",
       width: "60%",
       data: {
-        event: this.events[id],
+        event: this.dataSource._data._value[id],
       },
     });
 
-    dialogRef.afterClosed().subscribe();
+    dialogRef.afterClosed().subscribe((result) => {
+      this.data.patchEventDescription(result).subscribe();
+      this.getEventi();
+    });
   }
 }

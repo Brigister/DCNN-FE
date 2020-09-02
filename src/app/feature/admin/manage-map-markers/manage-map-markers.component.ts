@@ -4,6 +4,7 @@ import { MatTableDataSource } from "@angular/material/table";
 import { MapmarkerService } from "src/app/core/dataService/mapmarker.service";
 import { MatDialog } from "@angular/material/dialog";
 import { DescriptionDialogComponent } from "../description-dialog/description-dialog.component";
+import { IMapMarker } from 'src/app/model/interfaces';
 
 interface mapMarker {
   lat: Number;
@@ -27,14 +28,20 @@ export class ManageMapMarkersComponent implements OnInit {
   mapMarkers;
   displayedColumns: string[] = ["luogo", "regione", "azioni"];
 
-  /*   markerData: mapMarker; */
+  response?: boolean = undefined;
+  imported?: boolean = undefined;
+  error: boolean = false;
 
-  constructor(private data: MapmarkerService, private dialog: MatDialog) {}
+  constructor(private data: MapmarkerService, private dialog: MatDialog) { }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   ngOnInit(): void {
-    this.data.getMarkers().subscribe((data: any) => {
+    this.getMarkers();
+  }
+
+  getMarkers() {
+    this.data.getMarkers().subscribe((data: IMapMarker[]) => {
       this.mapMarkers = new MatTableDataSource(data);
       this.mapMarkers.paginator = this.paginator;
     });
@@ -45,26 +52,25 @@ export class ManageMapMarkersComponent implements OnInit {
     this.mapMarkers.filter = filterValue.trim().toLowerCase();
   }
 
+
+
   uploadMarker() {
-    console.log(this.markerData);
     if (this.markerData.lat == null || this.markerData.lng == null) {
-      document.getElementById("response").innerHTML = "Inserisci la posizione";
+      this.error = true;
     } else {
       this.data.addMarker(this.markerData).subscribe(
         (res) => {
-          document.getElementById("response").innerHTML =
-            "Marker aggiunto con successo";
+          this.response = true;
+          this.getMarkers();
         },
         (err) => {
-          console.log(err);
-          document.getElementById("response").innerHTML = "Marker non aggiunto";
+          this.response = false;
         }
       );
     }
   }
 
   openDialog(id): void {
-    console.log(this.mapMarkers._data._value[id]);
     let dialogRef = this.dialog.open(DescriptionDialogComponent, {
       backdropClass: "backdrop",
       panelClass: "panel",
@@ -74,14 +80,34 @@ export class ManageMapMarkersComponent implements OnInit {
       },
     });
 
-    dialogRef.afterClosed().subscribe();
+    dialogRef.afterClosed().subscribe((result) => {
+      this.data.updateRegion(result).subscribe();
+      this.getMarkers();
+
+    });
+
   }
   updateRegion(id: Number) {
     this.data.updateRegion(id);
   }
 
+  importMarkers() {
+    this.data.importMarkers().subscribe(
+      (res) => {
+        this.imported = true;
+        this.getMarkers();
+      },
+      (err) => {
+        this.imported = false;
+      }
+    );
+  }
+
   deleteMarker(id: Number) {
-    this.data.deleteMarker(id);
-    location.reload();
+    this.data.deleteMarker(id).subscribe(
+      res => {
+        this.getMarkers();
+      }
+    )
   }
 }

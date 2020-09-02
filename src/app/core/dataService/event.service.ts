@@ -1,12 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { environment } from "./../../../environments/environment.prod"
+import { Observable } from 'rxjs';
+import { Evento } from 'src/app/model/interfaces';
 
 @Injectable({
   providedIn: "root",
 })
 export class EventService {
-  private _fbapiUrl = "https://dcnn.herokuapp.com/fbapi/";
-  private _eventUrl = "https://dcnn.herokuapp.com/event/";
+  private _eventUrl = environment.apiUrl + "event/";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -14,40 +16,38 @@ export class EventService {
       "Access-Control-Allow-Methods": "*",
     }),
   };
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient) { }
 
-  public getAllEvents() {
-    return this.http.get(this._eventUrl + "allEvents");
+  public getAllEvents(): Observable<Evento[]> {
+    return this.http.get<Evento[]>(this._eventUrl + "allEvents");
   }
 
-  public getActiveEvents() {
-    return this.http.get(this._eventUrl + "activeEvent");
+  public getActiveEvents(): Observable<Evento[]> {
+    return this.http.get<Evento[]>(this._eventUrl + "activeEvent");
   }
 
-  public getFirst3Events() {
-    return this.http.get(this._eventUrl + "getFirst3Events");
+  public getFirst3Events(): Observable<Evento[]> {
+    return this.http.get<Evento[]>(this._eventUrl + "getFirst3Events");
   }
 
-  public getHistoryEvent() {
-    return this.http.get(this._eventUrl + "eventHistory");
+  public getHistoryEvent(): Observable<Evento[]> {
+    return this.http.get<Evento[]>(this._eventUrl + "eventHistory");
   }
 
-  public refreshEventDB() {
-    debugger;
-    return this.http.post(this._eventUrl + "refreshEventi", null);
+  public refreshEventDB(): Observable<Evento[]> {
+    return this.http.post<Evento[]>(this._eventUrl + "refreshEventi", null);
   }
 
-  public patchCoverPhoto() {
-    return this.http.patch(this._eventUrl + "refreshCover", null).subscribe();
+  public patchCoverPhoto(): Observable<Evento[]> {
+    return this.http.patch<Evento[]>(this._eventUrl + "refreshCover", null);
   }
 
-  public patchEventDescription(eventData) {
-    return this.http
-      .patch(this._eventUrl + "patchDescription", eventData)
-      .subscribe();
+  public patchEventDescription(eventData): Observable<Evento> {
+    return this.http.patch<Evento>(this._eventUrl + "patchDescription", eventData)
+
   }
 
   public deleteEvent(id: number) {
-    return this.http.delete(this._eventUrl + id + "/deleteEvent").subscribe();
+    return this.http.delete(this._eventUrl + id + "/deleteEvent");
   }
 }

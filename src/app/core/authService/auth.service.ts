@@ -1,14 +1,15 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import * as JWT from "jwt-decode";
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
-  private _userUrl = "https://dcnn.herokuapp.com/user/";
+  private _userUrl = environment.apiUrl + "user/";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   loginUser(user) {
     return this.http.post(this._userUrl + "login", user);

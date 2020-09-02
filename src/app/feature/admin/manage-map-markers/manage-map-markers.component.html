@@ -1,6 +1,8 @@
 <div class="form">
   <form>
-    <mat-label class="centro"><h2>Aggiungi un marker alla Mappa</h2></mat-label>
+    <mat-label class="centro">
+      <h2>Aggiungi un marker alla Mappa</h2>
+    </mat-label>
     <mat-form-field class="marker">
       <mat-label>Latitudine</mat-label>
       <input matInput [(ngModel)]="markerData.lat" name="lat" />
@@ -25,11 +27,14 @@
       <button mat-raised-button (click)="uploadMarker()">
         Aggiungi
       </button>
-
-      <p id="response"></p>
+      <p *ngIf="error" style="color: red">Inserisci la posizione</p>
+      <p *ngIf="response">Marker aggiunto correttamente</p>
+      <p *ngIf="response==false" style="color: red">Marker non aggiunto </p>
     </div>
   </form>
 </div>
+
+<button mat-raised-button (click)="importMarkers()">Importa Marker dagli Eventi</button>
 <hr />
 <div class="outer">
   <h3 class="centro">Lista dei Marker</h3>
@@ -38,6 +43,9 @@
     <mat-label>Filtro</mat-label>
     <input matInput (keyup)="applyFilter($event)" />
   </mat-form-field>
+
+  <p *ngIf="imported">Markers importati correttamente</p>
+  <p *ngIf="imported==false">Marker non importati</p>
 
   <table mat-table [dataSource]="mapMarkers">
     <ng-container matColumnDef="luogo">
@@ -61,11 +69,7 @@
         <button mat-raised-button color="primary" (click)="openDialog(i)">
           Regione
         </button>
-        <button
-          mat-raised-button
-          color="warn"
-          (click)="deleteMarker(mapMarker.id)"
-        >
+        <button mat-raised-button color="warn" (click)="deleteMarker(mapMarker.id)">
           Elimina
         </button>
       </td>
@@ -74,5 +78,5 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]"> </mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5,10,20,100]"> </mat-paginator>
 </div>

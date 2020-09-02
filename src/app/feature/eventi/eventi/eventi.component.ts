@@ -3,35 +3,33 @@ import { MatDialog } from "@angular/material/dialog";
 import { GmapsDialogComponent } from "../gmaps-dialog/gmaps-dialog.component";
 import { EventService } from "src/app/core/dataService/event.service";
 import { Evento } from "./../../../model/interfaces";
+import { Observable } from 'rxjs/internal/Observable';
+
 @Component({
   selector: "app-eventi",
   templateUrl: "./eventi.component.html",
   styleUrls: ["./eventi.component.css"],
 })
-export class EventiComponent implements OnInit {
-  actives: Evento[];
 
-  constructor(public data: EventService, private dialog: MatDialog) {}
+export class EventiComponent implements OnInit {
+  empty: boolean;
+  actives: Observable<Evento[]>;
+
+  constructor(public data: EventService, private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.data.getActiveEvents().subscribe((data: any) => {
-      console.log(data);
-      this.actives = data;
-    });
+    this.actives = this.data.getActiveEvents()
+
   }
 
-  openDialog(id) {
-    console.log(id);
+  openDialog(evento: Evento) {
+
     let dialogRef = this.dialog.open(GmapsDialogComponent, {
-      backdropClass: "backdrop",
-      panelClass: "panel",
       data: {
-        event: this.actives[id],
+        event: evento
       },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-    });
+    dialogRef.afterClosed().subscribe();
   }
 }

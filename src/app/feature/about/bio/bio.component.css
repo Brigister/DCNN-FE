@@ -15,19 +15,12 @@
   margin: 1% auto;
 }
 
-h1 {
-  text-align: center;
-  margin: 1%;
-  font-size: 57px;
-  font-family: FlowerKingdom;
-}
-
 .inline {
   display: inline-block;
 }
 
 #chartdiv {
-  width: 70%;
+  width: 60%;
   height: 700px;
 }
 
@@ -35,7 +28,7 @@ h1 {
   position: absolute;
   margin-left: 10%;
   margin-top: 2%;
-  width: 10%;
+  width: 15%;
 }
 
 .outer {
@@ -44,4 +37,42 @@ h1 {
 
 .mat-grid-tile {
   color: #e6b800;
+}
+
+@media (max-width: 1500px){
+  h1{
+    font-size: 40px;
+  }
+
+  #chartdiv{
+    width: 100%;
+  }
+
+  #legenda{
+    display: none;
+  }
+}
+
+@media (max-width: 1300px){
+  #intro{
+    font-size: 20px;
+  }
+}
+@media (max-width: 900px){
+  #chartdiv{
+    margin-left: auto;
+    margin-right: auto;
+    height: 500px;
+  }
+}
+@media (max-width: 700px){
+  #intro{
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 500px){
+  #chartdiv{
+    height: 300px;
+  }
 }

@@ -1,20 +1,23 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { environment } from "./../../../environments/environment.prod"
+import { Observable } from 'rxjs';
+import { IPhoto } from '../../model/interfaces'
 
 @Injectable({
   providedIn: "root",
 })
 export class PhotoService {
-  private _albumUrl = "https://dcnn.herokuapp.com/album/";
+  private _albumUrl = environment.apiUrl + "album/";
 
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient) { }
 
-  public getAllImages() {
-    return this.http.get(this._albumUrl + "getAllPhotos");
+  public getAllImages(): Observable<IPhoto[]> {
+    return this.http.get<IPhoto[]>(this._albumUrl + "getAllPhotos");
   }
 
-  public getVisibleImages() {
-    return this.http.get(this._albumUrl + "getVisiblePhotos");
+  public getVisibleImages(): Observable<IPhoto[]> {
+    return this.http.get<IPhoto[]>(this._albumUrl + "getVisiblePhotos");
   }
   public uploadImage(formData) {
     return this.http.post(this._albumUrl + "postPhoto", formData);
@@ -33,7 +36,6 @@ export class PhotoService {
   }
 
   public deletePhoto(imgData) {
-    debugger;
     return this.http.delete(this._albumUrl + "deletePhoto", imgData);
   }
 }

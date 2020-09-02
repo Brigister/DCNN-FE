@@ -9,9 +9,16 @@
   padding: 0;
   max-width: 100%;
 }
+
+body, html{
+  position:relative;
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   background-color: #18121e;
-  color: white;
+  color: white ;
   font-size: 20px;
 }
 h1,
@@ -23,6 +30,15 @@ mat-card-title {
 p {
   font-family: "Inconsolata", monospace;
 }
+
+a { 
+  text-decoration: none;
+}
+
+a:visited {
+  color: black;
+}
+
 .outer {
   margin-left: 5%;
   margin-right: 5%;

@@ -22,27 +22,34 @@ import { ManageMapMarkersComponent } from "./manage-map-markers/manage-map-marke
 import { ManageEventiComponent } from "./manage-eventi/manage-eventi.component";
 import { EventDescriptionDialogComponent } from "./event-description-dialog/event-description-dialog.component";
 import { ManageVideoclipComponent } from "./manage-videoclip/manage-videoclip.component";
+import { LoginComponent } from './login/login.component';
+
+import { AdminGuard } from "../../core/guards/admin-guard/admin.guard";
 
 const appRoutes: Routes = [
   {
     path: "",
+    component: LoginComponent,
+  },
+  {
+    path: "admin",
     component: AdminpanelComponent,
+    canActivate: [AdminGuard],
     children: [
       { path: "managephotos", component: ManagePhotosComponent },
       { path: "managemapmarkers", component: ManageMapMarkersComponent },
       { path: "manageeventi", component: ManageEventiComponent },
-      { path: "managevideoclip", component: ManageVideoclipComponent },
-    ],
+      { path: "managevideoclip", component: ManageVideoclipComponent },]
   },
-
   { path: "**", redirectTo: "", pathMatch: "full" },
 ];
 
 @NgModule({
   declarations: [
+    LoginComponent,
+    AdminpanelComponent,
     ManagePhotosComponent,
     DescriptionDialogComponent,
-    AdminpanelComponent,
     ManageMapMarkersComponent,
     ManageEventiComponent,
     DescriptionDialogComponent,
@@ -53,6 +60,8 @@ const appRoutes: Routes = [
     CommonModule,
     RouterModule.forChild(appRoutes),
     FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
     ReactiveFormsModule,
     MatGridListModule,
     MatSlideToggleModule,
@@ -66,8 +75,9 @@ const appRoutes: Routes = [
     MatPaginatorModule,
     MatSortModule,
     MatSelectModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   entryComponents: [],
 })
-export class AdminModule {}
+export class AdminModule { }

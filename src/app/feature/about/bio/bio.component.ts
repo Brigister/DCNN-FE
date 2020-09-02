@@ -12,14 +12,11 @@ import { MapmarkerService } from "src/app/core/dataService/mapmarker.service";
 export class BioComponent implements OnInit {
   regionCounts;
 
-  constructor(private zone: NgZone, private data: MapmarkerService) {}
+  constructor(private zone: NgZone, private data: MapmarkerService) { }
   private map: am4maps.MapChart;
 
   ngOnInit() {
-    this.data.getRegionCount().subscribe((data: any) => {
-      console.log(data);
-      this.regionCounts = data;
-    });
+    this.regionCounts = this.data.getRegionCount();
   }
   ngAfterViewInit() {
     this.zone.runOutsideAngular(() => {
@@ -34,7 +31,6 @@ export class BioComponent implements OnInit {
       let polygonTemplate = polygonSeries.mapPolygons.template;
       polygonSeries.exclude = ["FR-H", "MT"];
       polygonTemplate.tooltipText = "{name}";
-      //polygonTemplate.propertyFields =" "
       polygonTemplate.fill = am4core.color("#74B266");
 
       let imageSeries = chartMap.series.push(new am4maps.MapImageSeries());
@@ -52,7 +48,6 @@ export class BioComponent implements OnInit {
       imageSeriesTemplate.propertyFields.longitude = "lng";
 
       this.data.getMarkers().subscribe((data: any) => {
-        console.log(data);
         imageSeries.data = data;
       });
     });

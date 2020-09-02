@@ -56,9 +56,11 @@ mat-card {
   p {
     font-size: 15px;
   }
+
 }
 
 @media (max-width: 1000px) {
+
   .bio {
     flex-wrap: wrap;
     justify-content: center;

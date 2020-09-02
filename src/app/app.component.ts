@@ -1,6 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { filter } from "rxjs/operators";
 import { Router, NavigationEnd } from "@angular/router";
+import { MessageService } from './core/dataService/message.service';
+import { MapmarkerService } from './core/dataService/mapmarker.service';
 
 declare var gtag;
 
@@ -9,8 +11,14 @@ declare var gtag;
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
 })
-export class AppComponent {
-  constructor(router: Router) {
+export class AppComponent implements OnInit {
+
+  title = "#DCNN";
+
+  running: boolean = false
+
+  constructor(router: Router, public starting: MessageService) {
+
     const navEndEvent = router.events.pipe(
       filter((event) => event instanceof NavigationEnd)
     );
@@ -21,5 +29,9 @@ export class AppComponent {
     });
   }
 
-  title = "DCNN";
+  ngOnInit() {
+    this.starting.startingServer().subscribe(() => {
+      this.running = true
+    })
+  }
 }

@@ -9,10 +9,6 @@ button {
   background-color: #e6b800;
 }
 
-a {
-  all: unset;
-}
-
 #kikko {
   padding-top: 29%;
 }
@@ -43,6 +39,9 @@ a {
   /* text-align: center; */
 }
 
+#foto {
+  max-width: 100%;
+}
 .mat-expansion-panel,
 .mat-paginator {
   /* margin-left: 10%; */
@@ -98,9 +97,18 @@ a {
   .mat-expansion-panel-header-description {
     display: none;
   }
+  
+  .buttons{
+    text-align: center;
+  }
 }
 
 @media (max-width: 700px) {
+
+  .mat-expansion-panel-header{
+    height: 90px !important;
+  }
+
   .mat-expansion-panel,
   .mat-paginator {
     max-width: 100%;

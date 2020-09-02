@@ -1,17 +1,8 @@
-<!-- <div
-  class="fb-like"
-  data-href="https://www.facebook.com/Diplomaticoeilcollettivonn/"
-  data-width=""
-  data-layout="standard"
-  data-action="like"
-  data-size="large"
-  data-share="false"
-></div> -->
 <div class="intromargin">
-  <h1>DIPLOMATICO E IL COLLETTIVO NINCO NANCO</h1>
   <div id="intro_img">
-    <img src="assets/intro.jpeg" />
+    <img src="assets/band.gif" alt="Gif band completa" style="width: 100%;" />
   </div>
+
   <p id="intro">
     Diplomatico e il Collettivo Ninco Nanco è un progetto nato a Venezia<br />
     ma ormai virale in più regioni italiane. <br />Non è raro infatti
@@ -35,16 +26,12 @@
   <div class="inline" id="chartdiv"></div>
 
   <div class="inline" id="legenda">
-    <mat-grid-list cols="2" rowHeight="30px">
-      <mat-grid-tile>Regione</mat-grid-tile>
+    <mat-grid-list cols="3" rowHeight="30px">
+      <mat-grid-tile [colspan]="2">Regione</mat-grid-tile>
       <mat-grid-tile>Numero</mat-grid-tile>
     </mat-grid-list>
-    <mat-grid-list
-      cols="2"
-      rowHeight="30px"
-      *ngFor="let regionCount of regionCounts"
-    >
-      <mat-grid-tile>{{ regionCount.regione }}</mat-grid-tile>
+    <mat-grid-list cols="3" rowHeight="40px" *ngFor="let regionCount of regionCounts | async ">
+      <mat-grid-tile [colspan]="2">{{ regionCount.regione }}</mat-grid-tile>
       <mat-grid-tile>{{ regionCount.quantita }}</mat-grid-tile>
       <hr />
     </mat-grid-list>

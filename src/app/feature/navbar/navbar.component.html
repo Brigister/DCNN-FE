@@ -1,0 +1,84 @@
+<mat-toolbar class="myNavbar">
+  <div class="titolo">
+    <a routerLink="" routerLinkActive="active">
+      #DCNN
+    </a>
+  </div>
+
+  <div class="routing">
+
+    <a *ngIf="!isEventiRoute()" routerLink="/eventi" routerLinkActive="active" class="nav-link">
+      Eventi
+    </a>
+
+
+    <a *ngIf="isEventiRoute()" routerLink="/eventi/history" routerLinkActive="active" class="nav-link">
+      Eventi Passati
+    </a>
+
+
+    <a routerLink="/videoclip" routerLinkActive="active" class="nav-link">
+      Video Clip
+    </a>
+
+
+    <a *ngIf="!isBioRoute()" routerLink="/bio" routerLinkActive="active" class="nav-link">
+      Bio
+    </a>
+
+
+    <a *ngIf="isBioRoute()" routerLink="/bio/band" routerLinkActive="active" class="nav-link">
+      Band
+    </a>
+
+
+    <a routerLink="/contattaci" routerLinkActive="active" class="nav-link">
+      Contattaci
+    </a>
+
+  </div>
+
+  <div class="social">
+    <a href="https://www.facebook.com/Diplomaticoeilcollettivonn/" class="fa fa-facebook"></a>
+    <a href="https://www.youtube.com/channel/UClSgAqZK9wJIT_RDhdqVObg" class="fa fa-youtube"></a>
+    <a href="https://www.instagram.com/diplomaticoeilcollettivonn/" class="fa fa-instagram"></a>
+    <a href="https://open.spotify.com/artist/64GVceW437xz6YCREtCeCv" class="fa fa-spotify"></a>
+  </div>
+
+  <div class="mobile">
+    <button mat-icon-button (click)="clickMenu()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <mat-drawer #sidenav position="end" mode="over" [(opened)]="opened">
+
+
+    <div id="mobileMenu">
+      <a (click)="clickMenu()" id="mobileClose">
+        <mat-icon>close</mat-icon>
+      </a>
+      <a *ngIf="!isEventiRoute()" routerLink="/eventi" routerLinkActive="active">
+        Eventi
+      </a>
+      <a *ngIf="isEventiRoute()" routerLink="/eventi/history" routerLinkActive="active">
+        Eventi Passati
+      </a>
+
+
+      <a routerLink="/videoclip" routerLinkActive="active">
+        Video Clip
+      </a>
+      <a *ngIf="!isBioRoute()" routerLink="/bio" routerLinkActive="active">
+        Bio
+      </a>
+      <a *ngIf="isBioRoute()" routerLink="/bio/band" routerLinkActive="active">
+        Band
+      </a>
+      <a routerLink="/contattaci" routerLinkActive="active">
+        Contattaci
+      </a>
+    </div>
+  </mat-drawer>
+
+</mat-toolbar>

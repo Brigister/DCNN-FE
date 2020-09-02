@@ -1,15 +1,10 @@
 <div class="outer">
   <div class="container">
-    <mat-card class="video" *ngFor="let video of videos">
-      <mat-card-title
-        ><strong>{{ video.nome }}</strong></mat-card-title
-      >
+    <mat-card class="video" *ngFor="let video of videos | async">
+      <mat-card-title><strong>{{ video.nome }}</strong></mat-card-title>
       <mat-card-subtitle>{{ video.prodotto }}</mat-card-subtitle>
-      <mat-card-content
-        ><youtube-player
-          class="videoIntro"
-          videoId="{{ video.idVideoclip }}"
-        ></youtube-player>
+      <mat-card-content>
+        <youtube-player class="videoIntro" videoId="{{ video.idVideoclip }}"></youtube-player>
       </mat-card-content>
     </mat-card>
   </div>

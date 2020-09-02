@@ -1,5 +1,16 @@
-<app-navbar></app-navbar>
+<div class="starting" *ngIf="running == false">
+    <img id="spinner" src="assets/spinner.svg">
+</div>
 
-<router-outlet></router-outlet>
+<div *ngIf="running">
 
-<app-footer></app-footer>
+    <app-navbar></app-navbar>
+    <mat-drawer-container hasBackdrop="true">
+
+        <mat-drawer-content>
+            <router-outlet></router-outlet>
+        </mat-drawer-content>
+    </mat-drawer-container>
+
+    <app-footer></app-footer>
+</div>

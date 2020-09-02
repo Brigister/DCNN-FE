@@ -4,19 +4,15 @@ import { MatTableDataSource } from "@angular/material/table";
 import { MatPaginator } from "@angular/material/paginator";
 import { DescriptionDialogComponent } from "../description-dialog/description-dialog.component";
 import { MatDialog } from "@angular/material/dialog";
+import { IVideoclip } from 'src/app/model/interfaces';
 
-export interface videoData {
-  idVideoclip: String;
-  nome: String;
-  prodotto: String;
-}
 @Component({
   selector: "app-manage-videoclip",
   templateUrl: "./manage-videoclip.component.html",
   styleUrls: ["./manage-videoclip.component.css"],
 })
 export class ManageVideoclipComponent implements OnInit {
-  videoData: videoData = {
+  videoData: IVideoclip = {
     idVideoclip: null,
     nome: null,
     prodotto: null,
@@ -30,17 +26,20 @@ export class ManageVideoclipComponent implements OnInit {
   videos;
   displayedColumns = ["nome", "prodotto", "videourl", "ordine", "azioni"];
 
-  constructor(private data: VideoclipService, private dialog: MatDialog) {}
+  constructor(private data: VideoclipService, private dialog: MatDialog) { }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   ngOnInit(): void {
-    this.data.getAllVideoUrl().subscribe((data: any) => {
+    this.getVideo();
+  }
+
+  getVideo() {
+    this.data.getAllVideoUrl().subscribe((data: IVideoclip[]) => {
       this.videos = new MatTableDataSource(data);
       this.videos.paginator = this.paginator;
     });
   }
-
   addVideo() {
     if (
       this.videoData.idVideoclip != null &&
@@ -51,6 +50,7 @@ export class ManageVideoclipComponent implements OnInit {
         (res) => {
           document.getElementById("response").innerHTML =
             "Video aggiunto con successo";
+          this.getVideo();
         },
         (err) => {
           document.getElementById("response").innerHTML = "Video non aggiunto";
@@ -66,24 +66,30 @@ export class ManageVideoclipComponent implements OnInit {
     }
   }
 
-  changeOrder() {}
+
 
   delete(id: string) {
-    this.data.deleteVideoclip(id);
-    location.reload();
+
+    this.data.deleteVideoclip(id).subscribe(
+      res => {
+        this.getVideo();
+      },
+      err => {
+        document.getElementById("response").innerHTML = "Video non eliminato"
+      }
+    );
   }
 
   openDialog(id): void {
-    console.log(this.videos);
     let dialogRef = this.dialog.open(DescriptionDialogComponent, {
-      backdropClass: "backdrop",
-      panelClass: "panel",
       width: "20%",
       data: {
         video: this.videos.data[id],
       },
     });
 
-    dialogRef.afterClosed().subscribe();
+    dialogRef.afterClosed().subscribe(() => {
+      this.getVideo();
+    });
   }
 }

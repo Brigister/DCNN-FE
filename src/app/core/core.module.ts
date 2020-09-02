@@ -1,10 +1,6 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
-import { MaterialModule } from "./material/material.module";
-import { NavbarComponent } from "./navbar/navbar.component";
-import { FooterComponent } from "./footer/footer.component";
-
 import { AuthService } from "./AuthService/auth.service";
 import { AppRoutingModule } from "../app-routing.module";
 import { EventService } from "./dataService/event.service";
@@ -17,9 +13,22 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AdminGuard } from "./guards/admin-guard/admin.guard";
 import { PreloadStrategy } from "./preloadStrategy/preloadStrategy";
 
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatButtonModule } from '@angular/material/button'
+
+
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent],
-  imports: [CommonModule, AppRoutingModule, MaterialModule],
+  declarations: [],
+  imports: [
+    CommonModule,
+    AppRoutingModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatButtonModule
+  ],
   providers: [
     AuthService,
     EventService,
@@ -35,6 +44,6 @@ import { PreloadStrategy } from "./preloadStrategy/preloadStrategy";
     AdminGuard,
     PreloadStrategy,
   ],
-  exports: [AppRoutingModule, NavbarComponent, FooterComponent, MaterialModule],
+  exports: [AppRoutingModule],
 })
-export class CoreModule {}
+export class CoreModule { }

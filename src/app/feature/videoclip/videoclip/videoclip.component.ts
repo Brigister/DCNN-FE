@@ -8,7 +8,7 @@ import { VideoclipService } from "src/app/core/dataService/videoclip.service";
 })
 export class VideoclipComponent implements OnInit {
   videos;
-  constructor(private data: VideoclipService) {}
+  constructor(private data: VideoclipService) { }
 
   ngOnInit() {
     const tag = document.createElement("script");
@@ -16,9 +16,6 @@ export class VideoclipComponent implements OnInit {
     tag.src = "https://www.youtube.com/iframe_api";
     document.body.appendChild(tag);
 
-    this.data.getVisibileVideoUrl().subscribe((data) => {
-      console.log(data);
-      this.videos = data;
-    });
+    this.videos = this.data.getVisibileVideoUrl();
   }
 }

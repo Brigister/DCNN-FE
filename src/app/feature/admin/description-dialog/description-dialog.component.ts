@@ -34,33 +34,27 @@ export class DescriptionDialogComponent implements OnInit {
   constructor(
     public photoService: PhotoService,
     public videoService: VideoclipService,
-    public mapMarkerService: MapmarkerService,
     public dialogRef: MatDialogRef<DescriptionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    console.log(this.data);
   }
 
   updateImageOrder() {
     this.imageData.id_immagini = this.data.photo.id_immagini;
     this.photoService.patchImageOrder(this.imageData);
-    location.reload();
     this.dialogRef.close();
   }
 
   updateVideoOrder() {
     this.videoData.idVideoclip = this.data.video.idVideoclip;
     this.videoService.patchOrder(this.videoData);
-    location.reload();
     this.dialogRef.close();
   }
 
   updateRegion() {
     this.markerData.id = this.data.marker.id;
-    this.mapMarkerService.updateRegion(this.markerData);
-    location.reload();
-    this.dialogRef.close();
+    this.dialogRef.close(this.markerData);
   }
 }

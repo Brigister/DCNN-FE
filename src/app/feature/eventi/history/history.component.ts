@@ -15,34 +15,29 @@ import { Evento } from "src/app/model/interfaces";
 export class HistoryComponent implements OnInit {
   events;
   dataSource;
-  obs: Observable<any>;
+  obs: Observable<Evento[]>;
 
-  constructor(public data: EventService, private dialog: MatDialog) {}
+  constructor(public data: EventService, private dialog: MatDialog) { }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   ngOnInit(): void {
-    this.data.getHistoryEvent().subscribe((data: any) => {
-      console.log(data);
+    this.data.getHistoryEvent().subscribe((data: Evento[]) => {
 
-      this.events = new MatTableDataSource<any>(data);
+
+      this.events = new MatTableDataSource<Evento>(data);
       this.obs = this.events.connect();
       this.events.paginator = this.paginator;
     });
   }
 
-  openDialog(id) {
-    console.log(id);
+  openDialog(evento: Evento) {
     let dialogRef = this.dialog.open(GmapsDialogComponent, {
-      backdropClass: "backdrop",
-      panelClass: "panel",
       data: {
-        event: this.events[id],
+        event: evento
       },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log("The dialog was closed");
-    });
+    dialogRef.afterClosed().subscribe()
   }
 }

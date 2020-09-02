@@ -1,4 +1,4 @@
-import { Component, ViewChild, Inject, OnInit } from "@angular/core";
+import { Component, ViewChild, Inject } from "@angular/core";
 import { MapInfoWindow, MapMarker } from "@angular/google-maps";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 
@@ -11,11 +11,8 @@ export class GmapsDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<GmapsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) { }
 
-  ngOnInit(): void {
-    console.log(this.data);
-  }
 
   @ViewChild(MapInfoWindow, { static: false }) infoWindow: MapInfoWindow;
 

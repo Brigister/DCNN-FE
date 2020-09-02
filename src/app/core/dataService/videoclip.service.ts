@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
   providedIn: "root",
 })
 export class VideoclipService {
-  private _videoclipUrl = "https://dcnn.herokuapp.com/videoclip/";
+  private _videoclipUrl = environment.apiUrl + "videoclip/";
 
-  constructor(public http: HttpClient) {}
+  constructor(public http: HttpClient) { }
 
   public getAllVideoUrl() {
     return this.http.get(this._videoclipUrl + "getVideoclip");
@@ -34,7 +35,6 @@ export class VideoclipService {
   }
   public deleteVideoclip(idVideoclip) {
     return this.http
-      .delete(this._videoclipUrl + idVideoclip + "/deleteVideoclip")
-      .subscribe();
+      .delete(`${this._videoclipUrl}${idVideoclip}/deleteVideoclip`)
   }
 }

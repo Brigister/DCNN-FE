@@ -1,7 +1,7 @@
 <div class="outer" id="kikko">
   <div class="amore">
     <mat-accordion class="header-align">
-      <mat-expansion-panel *ngFor="let event of obs | async; let i = index">
+      <mat-expansion-panel *ngFor="let event of obs | async">
         <mat-expansion-panel-header class="centro">
           <mat-panel-title>
             <h2 class="psx">{{ event.Nome }}</h2>
@@ -13,7 +13,7 @@
 
         <ng-template matExpansionPanelContent>
           <div id="panelImg">
-            <img src="{{ event.UrlFoto }}" />
+            <img id="foto" src="{{ event.UrlFoto }}" />
           </div>
           <div class="panelContent">
             <p>{{ event.Descrizione }}</p>
@@ -23,11 +23,9 @@
           </div>
 
           <div class="buttons">
-            <button mat-raised-button (click)="openDialog(i)">Mappa</button>
+            <button mat-raised-button (click)="openDialog(event)">Mappa</button>
             <button mat-raised-button>
-              <a href="https://www.facebook.com/events/{{ event.idEventi }}"
-                >Maggiori Info</a
-              >
+              <a href="https://www.facebook.com/events/{{ event.idEventi }}" target="_blank">Maggiori Info</a>
             </button>
           </div>
         </ng-template>

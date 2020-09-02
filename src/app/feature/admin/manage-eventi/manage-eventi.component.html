@@ -1,6 +1,7 @@
 <button mat-raised-button (click)="refreshEventi()">Aggiorna eventi</button>
 <button mat-raised-button (click)="refreshCover()">Aggiorna foto eventi</button>
-<p id="response"></p>
+<p *ngIf="refreshed">Eventi aggiornati</p>
+<p *ngIf="refreshed==false">Eventi non aggiornati</p>
 
 <hr />
 

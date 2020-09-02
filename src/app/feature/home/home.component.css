@@ -3,10 +3,6 @@ button {
   background-color: #e6b800;
 }
 
-a {
-  all: unset;
-}
-
 .max {
   margin-top: 2%;
 }
@@ -29,6 +25,11 @@ a {
 .maxfoto {
   flex-basis: 100%;
   padding-right: 10px;
+
+}
+
+#foto{
+  max-width: 100%;
 }
 
 .maxtext {
@@ -57,6 +58,7 @@ a {
 }
 
 .minfoto {
+  max-width: 100%;
   margin-top: 2%;
 }
 
@@ -100,4 +102,13 @@ a {
   .min-events {
     margin: 2% 5% 2% 5%;
   }
+}
+
+
+@media (max-width: 1000px){
+
+  .maxbutton{
+    text-align: center;
+  }
+
 }

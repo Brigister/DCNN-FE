@@ -1,36 +1,13 @@
-<mat-carousel
-  timings="1000ms ease-in"
-  [autoplay]="true"
-  interval="4000"
-  color="primary"
-  maxWidth="auto"
-  proportion="40"
-  slides="slides.length()"
-  [loop]="true"
-  [hideArrows]="true"
-  [hideIndicators]="false"
-  [useKeyboard]="false"
-  [useMouseWheel]="false"
-  orientation="ltr"
->
-  <mat-carousel-slide
-    #matCarouselSlide
-    *ngFor="let slide of slides; let i = index"
-    [image]="slide.path_img"
-    [hideOverlay]="true"
-  ></mat-carousel-slide>
-</mat-carousel>
+<app-carousel></app-carousel>
 
 <div class="outer">
   <div>
-    <mat-card class="max" *ngFor="let event of events | slice: 0:1">
-      <mat-card-title
-        ><strong>{{ event.Nome }}</strong></mat-card-title
-      >
+    <mat-card class="max" *ngFor="let event of events | async | slice: 0:1 ">
+      <mat-card-title><strong>{{ event.Nome }}</strong></mat-card-title>
 
       <mat-card-content class="max-container">
         <div class="maxfoto">
-          <img src="{{ event.UrlFoto }}" />
+          <img id="foto" src="{{ event.UrlFoto }}" />
         </div>
         <div class="maxtext">
           <p class="data">{{ event.Formatted }}, {{ event.Luogo }}</p>
@@ -40,25 +17,18 @@
       </mat-card-content>
 
       <mat-card-actions class="maxbutton">
-        <button mat-raised-button (click)="openDialog(0)">
+        <button mat-raised-button (click)="openDialog(event)">
           Mappa
         </button>
         <button mat-raised-button>
-          <a href="https://www.facebook.com/events/{{ event.idEventi }}"
-            >Maggiori Info</a
-          >
+          <a href="https://www.facebook.com/events/{{ event.idEventi }}" target="_blank">Maggiori Info</a>
         </button>
       </mat-card-actions>
     </mat-card>
   </div>
   <div class="min-container">
-    <mat-card
-      class="min-events"
-      *ngFor="let event of events | slice: 1; let i = index"
-    >
-      <mat-card-title
-        ><strong>{{ event.Nome }}</strong></mat-card-title
-      >
+    <mat-card class="min-events" *ngFor="let event of events | async | slice: 1 ">
+      <mat-card-title><strong>{{ event.Nome }}</strong></mat-card-title>
 
       <mat-card-content>
         <p class="data">{{ event.Formatted }}, {{ event.Luogo }}</p>
@@ -66,80 +36,16 @@
       </mat-card-content>
 
       <mat-card-actions class="minbutton">
-        <button mat-raised-button (click)="openDialog(i)">
+        <button mat-raised-button (click)="openDialog(event)">
           Mappa
         </button>
         <button mat-raised-button>
-          <a href="https://www.facebook.com/events/{{ event.idEventi }}"
-            >Maggiori Info</a
-          >
+          <a href="https://www.facebook.com/events/{{ event.idEventi }}" target="_blank">Maggiori Info</a>
         </button>
       </mat-card-actions>
     </mat-card>
   </div>
 
-  <div *ngIf="!events">
-    <mat-card>
-      <mat-card-title>
-        Diplomatico e il Collettivo Ninco Nanco
-      </mat-card-title>
-      <mat-card-content class="max-container">
-        <div class="maxfoto">
-          <youtube-player videoId="YqEPhynPF3Q"> </youtube-player>
-        </div>
-        <div class="maxtext">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            consectetur aliquam leo ac condimentum. Nullam fringilla quis purus
-            sed finibus. Pellentesque at consequat odio. Aliquam erat volutpat.
-            Nulla velit est, convallis eget mattis vel, maximus eu justo. Fusce
-            vehicula fringilla velit eget ullamcorper. Interdum et malesuada
-            fames ac ante ipsum primis in faucibus. Sed tincidunt arcu eget
-            lectus dapibus, vel molestie sem maximus. Interdum et malesuada
-            fames ac ante ipsum primis in faucibus.
-          </p>
-        </div>
-      </mat-card-content>
-    </mat-card>
+  <ng-template [ngComponentOutlet]="component"></ng-template>
 
-    <div class="min-container">
-      <mat-card class="min-events">
-        <mat-card-title>
-          Tabacco
-        </mat-card-title>
-        <mat-card-content
-          ><youtube-player videoId="U0QjO3zCnvM"> </youtube-player>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            consectetur aliquam leo ac condimentum. Nullam fringilla quis purus
-            sed finibus. Pellentesque at consequat odio. Aliquam erat volutpat.
-            Nulla velit est, convallis eget mattis vel, maximus eu justo. Fusce
-            vehicula fringilla velit eget ullamcorper. Interdum et malesuada
-            fames ac ante ipsum primis in faucibus. Sed tincidunt arcu eget
-            lectus dapibus, vel molestie sem maximus. Interdum et malesuada
-            fames ac ante ipsum primis in faucibus.
-          </p></mat-card-content
-        >
-      </mat-card>
-
-      <mat-card class="min-events">
-        <mat-card-title>
-          Puntini
-        </mat-card-title>
-        <mat-card-content
-          ><youtube-player videoId="r7STTc1rOYE"> </youtube-player>
-          <p class="data">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            consectetur aliquam leo ac condimentum. Nullam fringilla quis purus
-            sed finibus. Pellentesque at consequat odio. Aliquam erat volutpat.
-            Nulla velit est, convallis eget mattis vel, maximus eu justo. Fusce
-            vehicula fringilla velit eget ullamcorper. Interdum et malesuada
-            fames ac ante ipsum primis in faucibus. Sed tincidunt arcu eget
-            lectus dapibus, vel molestie sem maximus. Interdum et malesuada
-            fames ac ante ipsum primis in faucibus.
-          </p></mat-card-content
-        >
-      </mat-card>
-    </div>
-  </div>
 </div>

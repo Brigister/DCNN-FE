@@ -4,6 +4,7 @@ import { DescriptionDialogComponent } from "../description-dialog/description-di
 import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { PhotoService } from "src/app/core/dataService/photo.service";
+import { IPhoto } from 'src/app/model/interfaces';
 
 @Component({
   selector: "app-manage-photos",
@@ -15,17 +16,19 @@ export class ManagePhotosComponent implements OnInit {
     image: null,
   };
 
-  photos;
   dataSource;
   displayedColumns = ["id", "foto", "ordine", "azioni"];
 
-  constructor(private dialog: MatDialog, public data: PhotoService) {}
+  constructor(private dialog: MatDialog, public data: PhotoService) { }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   ngOnInit(): void {
-    this.data.getAllImages().subscribe((data: any) => {
-      this.photos = data;
+    this.getPhotos();
+  }
+
+  getPhotos() {
+    this.data.getAllImages().subscribe((data: IPhoto[]) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
     });
@@ -38,12 +41,7 @@ export class ManagePhotosComponent implements OnInit {
   upload() {
     let fd = new FormData();
     fd.append("image", this.imageData.image, this.imageData.image.name);
-    //fd.append("descrizione", this.imageData.descrizione);
-    console.log(fd);
-
-    this.data.uploadImage(fd).subscribe((res) => {
-      console.log(res);
-    });
+    this.data.uploadImage(fd).subscribe();
   }
 
   changeVisibility(id: Number, event) {
@@ -53,24 +51,23 @@ export class ManagePhotosComponent implements OnInit {
   }
 
   delete(path: string) {
-    console.log(path);
-    let imgData = {
+    const imgData = {
       path_img: path,
     };
     this.data.deletePhoto(imgData).subscribe();
-    location.reload();
+    this.getPhotos();
   }
 
   openDialog(id): void {
     let dialogRef = this.dialog.open(DescriptionDialogComponent, {
-      backdropClass: "backdrop",
-      panelClass: "panel",
       width: "20%",
       data: {
-        photo: this.photos[id],
+        photo: this.dataSource._data._value[id],
       },
     });
 
-    dialogRef.afterClosed().subscribe();
+    dialogRef.afterClosed().subscribe(() => {
+      this.getPhotos();
+    });
   }
 }

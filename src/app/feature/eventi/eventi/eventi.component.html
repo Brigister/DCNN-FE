@@ -1,20 +1,16 @@
 <div class="outer">
-  <div *ngIf="actives == null">
+  <div *ngIf="empty">
     <p>
       Al momento abbiamo concerti programmati.<br />
       Dai un'occhiata ai nostri concerti passati!
     </p>
-    <button
-      mat-raised-button
-      routerLink="/eventi/history"
-      routerLinkActive="active"
-    >
+    <button mat-raised-button routerLink="/eventi/history" routerLinkActive="active">
       Concerti Passati
     </button>
   </div>
 
   <div class="outer">
-    <div class="main" *ngFor="let active of actives | slice: 0:1">
+    <div class="main" *ngFor="let active of actives | async | slice: 0:1">
       <h2 id="titolo">{{ active.Nome }}</h2>
       <div class="content">
         <div class="eventImg">
@@ -24,11 +20,9 @@
           <p class="text">{{ active.Descrizione }}</p>
           <p class="text">{{ active.Formatted }}, {{ active.Luogo }}</p>
           <div class="buttons">
-            <button mat-raised-button (click)="openDialog(0)">Mappa</button>
+            <button mat-raised-button (click)="openDialog(active)">Mappa</button>
             <button mat-raised-button>
-              <a href="https://www.facebook.com/events/{{ active.idEventi }}"
-                >Maggiori Info</a
-              >
+              <a href="https://www.facebook.com/events/{{ active.idEventi }}" target="_blank">Maggiori Info</a>
             </button>
           </div>
         </div>
@@ -36,9 +30,7 @@
     </div>
 
     <mat-accordion class="header-align">
-      <mat-expansion-panel
-        *ngFor="let active of actives | slice: 1; let i = index"
-      >
+      <mat-expansion-panel *ngFor="let active of actives | async | slice: 1">
         <mat-expansion-panel-header class="centro">
           <mat-panel-title>
             <h2>{{ active.Nome }}</h2>
@@ -60,11 +52,9 @@
           </div>
 
           <div class="buttons">
-            <button mat-raised-button (click)="openDialog(0)">Mappa</button>
+            <button mat-raised-button (click)="openDialog(active)">Mappa</button>
             <button mat-raised-button>
-              <a href="https://www.facebook.com/events/{{ active.idEventi }}"
-                >Maggiori Info</a
-              >
+              <a href="https://www.facebook.com/events/{{ active.idEventi }}" target="_blank">Maggiori Info</a>
             </button>
           </div>
         </ng-template>
