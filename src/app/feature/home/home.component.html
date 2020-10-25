@@ -2,7 +2,7 @@
 
 <div class="outer">
   <div>
-    <mat-card class="max" *ngFor="let event of events | async | slice: 0:1 ">
+    <mat-card class="max" *ngFor="let event of events | slice: 0:1 ">
       <mat-card-title><strong>{{ event.Nome }}</strong></mat-card-title>
 
       <mat-card-content class="max-container">
@@ -27,7 +27,7 @@
     </mat-card>
   </div>
   <div class="min-container">
-    <mat-card class="min-events" *ngFor="let event of events | async | slice: 1 ">
+    <mat-card class="min-events" *ngFor="let event of events | slice: 1 ">
       <mat-card-title><strong>{{ event.Nome }}</strong></mat-card-title>
 
       <mat-card-content>

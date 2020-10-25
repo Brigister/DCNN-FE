@@ -29,14 +29,13 @@
     "@angular/youtube-player": "^9.2.0",
     "@ngmodule/material-carousel": "^0.6.0",
     "jwt-decode": "^2.2.0",
-    "ng2-google-charts": "^6.1.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/architect": "~0.900",
-    "@angular-devkit/build-angular": "~0.900.7",
+    "@angular-devkit/build-angular": "^0.1001.2",
     "@angular/cli": "~9.0.7",
     "@angular/compiler-cli": "~9.0.7",
     "@angular/language-service": "~9.0.7",

@@ -4,6 +4,7 @@ import { GmapsDialogComponent } from "../gmaps-dialog/gmaps-dialog.component";
 import { EventService } from "src/app/core/dataService/event.service";
 import { Evento } from "./../../../model/interfaces";
 import { Observable } from 'rxjs/internal/Observable';
+import { defaultIfEmpty } from 'rxjs/operators';
 
 @Component({
   selector: "app-eventi",
@@ -18,8 +19,10 @@ export class EventiComponent implements OnInit {
   constructor(public data: EventService, private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.actives = this.data.getActiveEvents()
-
+    this.actives = this.data.getActiveEvents().pipe(
+      defaultIfEmpty([])
+    )
+    console.log(this.actives);
   }
 
   openDialog(evento: Evento) {

@@ -8,7 +8,6 @@ import { MatCardModule } from '@angular/material/card';
   declarations: [YoutubeComponent],
   imports: [
     CommonModule,
-
     YouTubePlayerModule,
     MatCardModule,
   ]

@@ -1,5 +1,5 @@
 <div class="outer">
-  <div *ngIf="empty">
+  <div *ngIf="!(actives | async) ">
     <p>
       Al momento abbiamo concerti programmati.<br />
       Dai un'occhiata ai nostri concerti passati!

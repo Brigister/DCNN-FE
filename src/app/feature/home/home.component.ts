@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/internal/Observable';
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-  events: Observable<Evento[]>;
+  events: Evento[];
   component: Type<YoutubeComponent>;
 
   constructor(
@@ -23,7 +23,9 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.events = this.eventData.getFirst3Events()
+    this.eventData.getFirst3Events().subscribe(data => {
+      this.events = data;
+    })
 
     if (!this.events) {
       import("./youtube/youtube.module")
